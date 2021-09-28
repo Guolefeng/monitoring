@@ -3,7 +3,7 @@ import {
   ElForm, ElFormItem, ElRow, ElCol, ElInput, ElButton,
   ElIcon, ElContainer, ElHeader, ElAside, ElMain,
   ElMenu, ElMenuItem, ElMenuItemGroup, ElSubmenu,
-  ElTable, ElPagination,
+  ElTable, ElTableColumn, ElPagination,
 } from 'element-plus';
 
 export default function (app) {
@@ -15,6 +15,7 @@ export default function (app) {
   app.component(ElButton.name, ElButton);
   app.component(ElIcon.name, ElIcon);
   app.component(ElTable.name, ElTable);
+  app.component(ElTableColumn.name, ElTableColumn);
   app.component(ElPagination.name, ElPagination);
   app.component(ElContainer.name, ElContainer);
   app.component(ElHeader.name, ElHeader);

@@ -1,8 +1,8 @@
 # demo
 
 url:
-username: 
-passwordd: 
+username: xxx 
+password: xxx
 
 start:
 npm install

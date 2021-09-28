@@ -56,8 +56,8 @@ export default defineComponent({
     };
   },
   methods: {
-    goAdmin() {
-      router.push({ path: '/admin' });
+    goTask() {
+      router.push({ path: '/task' });
     },
     login() {
       this.$refs.form.validate((valid) => {
@@ -67,7 +67,7 @@ export default defineComponent({
             store.commit('token', resData.token);
             store.commit('user', resData);
             localStorage.setItem('user', JSON.stringify(resData));
-            this.goAdmin();
+            this.goTask();
           }).catch((err) => {
             console.log('err: ', err);
           });
@@ -80,7 +80,7 @@ export default defineComponent({
   },
   mounted() {
     if (this.token) {
-      this.goAdmin();
+      this.goTask();
     }
   },
 });
