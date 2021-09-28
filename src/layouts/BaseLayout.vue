@@ -7,10 +7,10 @@
       <el-container>
         <el-aside width="200px">
           <el-menu
-            default-active="0"
+            :default-active="defalutActive"
             @select="onMenuSelect"
           >
-            <el-menu-item v-for="(m, i) in menu" :key="i" :index="i">
+            <el-menu-item v-for="(m, i) in menu" :key="i" :index="m.path">
               <i :class="m.icon" />
               <span>{{m.label}}</span>
             </el-menu-item>
@@ -35,12 +35,13 @@ export default defineComponent({
   },
   data() {
     return {
+      defalutActive: window.location.pathname,
       menu,
     };
   },
   methods: {
-    onMenuSelect(index) {
-      router.push({ path: menu[index].path });
+    onMenuSelect(path) {
+      router.push({ path });
     },
   },
 });
