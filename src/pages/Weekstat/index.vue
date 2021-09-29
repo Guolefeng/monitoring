@@ -4,7 +4,7 @@
       <Pie
         cid="weekImg"
         title="图片不良信息"
-        :subTitle="'今日统计识别图片总量' + getTotal(imgData)"
+        :subTitle="'本周统计识别图片总量' + getTotal(imgData)"
         :datas="imgData"
       />
     </div>
@@ -13,7 +13,7 @@
         <Pie
           cid="weekVideo"
           title="视频不良信息"
-          :subTitle="'今日统计识别视频总量' + getTotal(videoData)"
+          :subTitle="'本周统计识别视频总量' + getTotal(videoData)"
           :datas="videoData"
         />
       </div>
@@ -21,7 +21,7 @@
         <Pie
           cid="weekText"
           title="文本不良信息"
-          :subTitle="'今日统计识别文本总量' + getTotal(textData)"
+          :subTitle="'本周统计识别文本总量' + getTotal(textData)"
           :datas="textData"
         />
       </div>
