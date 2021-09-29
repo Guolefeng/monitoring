@@ -8,9 +8,7 @@ module.exports = {
         '@': resolve('src'),
       },
     },
-    externals: {
-      echarts: 'echarts',
-    },
+    externals: {},
     amd: {
       toUrlUndefined: true,
     },

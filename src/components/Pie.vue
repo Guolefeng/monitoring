@@ -1,11 +1,10 @@
 <template>
-  <div class="box" id="chart" />
+  <div class="pie" :id="cid" />
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-// eslint-disable-next-line import/no-unresolved
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 
 export default defineComponent({
   props: {
@@ -14,6 +13,7 @@ export default defineComponent({
       required: true,
     },
     title: String,
+    subTitle: String,
     datas: {
       type: Array, // [{value: xx, name: 'xxx' }, ...]
     },
@@ -22,22 +22,42 @@ export default defineComponent({
     return {};
   },
   mounted() {
-    this.curEle = this.$refs[this.cid];
+    this.renderChart();
+    window.addEventListener('resize', this.onResize);
   },
   methods: {
+    getRandomArrayElements(arr, count) {
+      const shuffled = arr.slice(0);
+      let i = arr.length;
+      const min = i - count;
+      let temp;
+      let index;
+      // eslint-disable-next-line no-plusplus
+      while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+      }
+      return shuffled.slice(min);
+    },
     renderChart() {
-      this.chart = echarts.init(document.getElementById('chart'));
+      this.chart = echarts.init(document.getElementById(this.cid));
       const option = {
+        color: this.getRandomArrayElements(['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'], 2),
         title: {
           text: this.title,
+          subtext: this.subTitle,
           left: 'center',
         },
         tooltip: {
           trigger: 'item',
+          formatter: '{a} <br/>{b}: {c} ({d}%)',
         },
         legend: {
           orient: 'vertical',
-          left: 'left',
+          right: '20',
+          bottom: 'auto',
         },
         series: [
           {
@@ -57,17 +77,23 @@ export default defineComponent({
       };
       this.chart.setOption(option);
     },
+    onResize() {
+      if (this.chart) {
+        this.chart.resize();
+      }
+    },
   },
   beforeUnmount() {
     if (this.chart) {
       this.chart.dispose();
     }
+    window.removeEventListener('resize', this.onResize);
   },
 });
 </script>
 
 <style scoped>
-.box {
+.pie {
   width: 100%;
   height: 100%;
 }

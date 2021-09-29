@@ -1,14 +1,29 @@
 <template>
   <div class="box">
     <div class="top">
-      <Pie cid="dayImg" title="图片不良信息" :datas="imgData" />
+      <Pie
+        cid="dayImg"
+        title="图片不良信息"
+        :subTitle="'今日统计识别图片总量' + getTotal(imgData)"
+        :datas="imgData"
+      />
     </div>
     <div class="bottom">
       <div class="bottom-l">
-        <Pie cid="dayVideo" title="视频不良信息" :datas="videoData" />
+        <Pie
+          cid="dayVideo"
+          title="视频不良信息"
+          :subTitle="'今日统计识别视频总量' + getTotal(videoData)"
+          :datas="videoData"
+        />
       </div>
       <div class="bottom-r">
-        <Pie cid="dayText" title="文本不良信息" :datas="textData" />
+        <Pie
+          cid="dayText"
+          title="文本不良信息"
+          :subTitle="'今日统计识别文本总量' + getTotal(textData)"
+          :datas="textData"
+        />
       </div>
     </div>
   </div>
@@ -26,13 +41,17 @@ export default defineComponent({
   data() {
     return {
       imgData: [{ value: 100, name: '不良图片数量' }, { value: 200, name: '合格图片数量' }],
-      videoData: [{ value: 100, name: '不良视频数量' }, { value: 200, name: '合格视频数量' }],
-      textData: [{ value: 100, name: '不良文本数量' }, { value: 200, name: '合格文本数量' }],
+      videoData: [{ value: 400, name: '不良视频数量' }, { value: 200, name: '合格视频数量' }],
+      textData: [{ value: 700, name: '不良文本数量' }, { value: 200, name: '合格文本数量' }],
     };
   },
   mounted() {
   },
-  methods: {},
+  methods: {
+    getTotal(arr) {
+      return arr.reduce((pre, cur) => (pre + cur.value), 0);
+    },
+  },
   computed: {},
   watch: {},
 });
@@ -41,9 +60,10 @@ export default defineComponent({
 <style scoped>
 .box {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
 }
 .top {
+  margin-bottom: 20px;
   width: 100%;
   height: 50%;
   border-bottom: 1px solid #e6e6e6;
