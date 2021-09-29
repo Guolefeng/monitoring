@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import BaseLayout from '@/layouts/BaseLayout.vue';
 import LoginPage from '@/pages/Login/index.vue';
 import Task from '@/pages/Task/index.vue';
@@ -7,7 +7,7 @@ import Daystat from '@/pages/Daystat/index.vue';
 import Weekstat from '@/pages/Weekstat/index.vue';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     { path: '/login', name: 'login', component: LoginPage },
     {
